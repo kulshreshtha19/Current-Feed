@@ -1,1 +1,2 @@
-*.Html linguist-language=Python
+*.python linguist-vendored
+CHANGELOG.md export-ignore
