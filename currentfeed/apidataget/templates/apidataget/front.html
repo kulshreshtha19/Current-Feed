@@ -1,0 +1,42 @@
+{% extends 'apidataget/home.html' %}
+
+{% block content %}
+<div class="row">
+    {% for article in des %}
+{#          <div class="column">#}
+{#            <div class="card">#}
+{#                <p>{{ article.title }}</p>#}
+{#                <h5>Title description, Dec 7, 2017</h5>#}
+{#                <img src="{{ article.urlToImage }}" style="height: 100px">#}
+{#                <p>Some text..</p>#}
+{#                <p>{{ article.description|slice:":100"|add:"..."}}</p>#}
+{#            </div>#}
+{#          </div>#}
+
+                            <div class="col-xs-12 col-sm-4">
+                                        <div class="card">
+                                       <div class="image">
+                                        <img src="{{ article.urlToImage }}" style="height: 200px" />
+
+                                        <button class="save">Save</button>
+                                        <button class="share" onclick="" >Share</button>
+                                        <a href="manually" class="avia-slideshow-button avia-button avia-color-light avia-multi-slideshow-button" data-duration="800" data-easing="easeInOutQuad">Learn more</a>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="card-title">
+                                             {{ article.title }}
+                                        </h4>
+                                        <p class="" style="text-align: justify;height: 40px">
+                                            {{ article.description|slice:":100"|add:"..."}}
+                                        </p>
+                                    </div>
+                                    <div class="card-read-more">
+                                        <a href="{{ article.url }}" class="btn btn-link btn-block">
+                                            Read More
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+<body>
+    {% for article in des %}
+        <p>{{ article.author }}</p>
+        <p>{{ article.title }}</p>
+        <p>{{ article.description }}</p>
+        <p>{{ article.publishedAt }}</p>
+        <p>{{ article.content }}</p><br><br><br>
+    {% endfor %}
+</body>
+</html>
