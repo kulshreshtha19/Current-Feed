@@ -2,7 +2,7 @@
 
 {% block content %}
     {% for article in des %}
-        {% if article.urlToImage != None and article.title != None and article.description != None and article.url != None%}
+        {% if article.urlToImage is not None and article.title is not None and article.description is not None and article.url is not None%}
             <div>
                 <div class="uk-card uk-card-default">
                     <div class="uk-card-media-top">
@@ -12,16 +12,23 @@
                         <h3 class="uk-card-title">{{ article.title }}</h3>
                         <p> {{ article.description}}</p>
                         <div class="uk-card-footer uk-inline">
-                            <button class="uk-button uk-button-default">Save</button>
-                            <button class="uk-button" uk-icon="icon: social"></button>
-                            <div uk-dropdown>
-                                <ul class="uk-nav uk-dropdown-nav">
-                                    <li><a href="https://www.facebook.com/sharer.php?u={{ article.url }}"> facebook <span uk-icon="facebook"></span></a></li>
-                                    <li><a href="https://twitter.com/intent/tweet?url={{ article.url }}"> twitter <span uk-icon="twitter"></span></a></li>
-                                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ article.url }}"> linkedin <span uk-icon="linkedin"></span></a></li>
-                                </ul>
-                            </div>
-                            <a href="{{ article.url }}" class="uk-button uk-button-text">Read more</a>
+                            <form class="uk-form" method="post" action="/save/">
+                                {% csrf_token %}
+                                <input class="uk-button uk-button-default" type="submit" value="Save"/>
+                                <button class="uk-button" uk-icon="icon: social"></button>
+                                <div uk-dropdown>
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        <li><a href="https://www.facebook.com/sharer.php?u={{ article.url }}"> facebook <span uk-icon="facebook"></span></a></li>
+                                        <li><a href="https://twitter.com/intent/tweet?url={{ article.url }}"> twitter <span uk-icon="twitter"></span></a></li>
+                                        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ article.url }}"> linkedin <span uk-icon="linkedin"></span></a></li>
+                                    </ul>
+                                </div>
+                                <a href="{{ article.url }}" class="uk-button uk-button-text">Read more</a>
+                                <input type="text" value="{{ article.title }}" name="article_title" hidden>
+                                <input type="text" value="{{ article.description }}" name="article_description" hidden>
+                                <input type="text" value="{{ article.urlToImage }}" name="article_image" hidden>
+                                <input type="text" value="{{ article.url }}" name="article_url" hidden>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-
+from django.forms import ModelForm
+from apidataget.models import Save
 
 class UserForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -20,3 +21,8 @@ class UserForm(UserCreationForm):
             user.save()
 
         return user
+
+class ArticleForm(ModelForm):
+    class Meta:
+        model=Save
+        fields=('article_title', 'article_description', 'article_image', 'article_url')

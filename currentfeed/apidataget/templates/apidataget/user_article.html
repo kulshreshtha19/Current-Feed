@@ -1,0 +1,28 @@
+{% extends 'apidataget/home.html' %}
+
+{% block content %}
+    {% for article in article %}
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top">
+                        <img src="{{ article.article_image }}" alt="" style="height: 270px;width: 100%">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">{{ article.article_title }}</h3>
+                        <p> {{ article.article_description}}</p>
+                        <div class="uk-card-footer uk-inline">
+                                <button class="uk-button" uk-icon="icon: social"></button>
+                                <div uk-dropdown>
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        <li><a href="https://www.facebook.com/sharer.php?u={{ article.article_url }}"> facebook <span uk-icon="facebook"></span></a></li>
+                                        <li><a href="https://twitter.com/intent/tweet?url={{ article.article_url }}"> twitter <span uk-icon="twitter"></span></a></li>
+                                        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ article.article_url }}"> linkedin <span uk-icon="linkedin"></span></a></li>
+                                    </ul>
+                                </div>
+                                <a href="{{ article.article_url }}" class="uk-button uk-button-text">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+{% endblock %}

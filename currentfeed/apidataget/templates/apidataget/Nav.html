@@ -6,7 +6,7 @@
         <script src="uikit/dist/js/uikit-icons.min.js"></script>
 </head>
 <body>
-    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+{#    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">#}
         <nav class="uk-navbar-container" uk-navbar>
                 <div class="uk-navbar-left">
                     <a class="uk-navbar-item uk-logo" href="#">Current Feed</a>
@@ -41,6 +41,7 @@
                             </div>
                     <ul class="uk-navbar-nav">
                         {% if user.is_authenticated %}
+                            <li class="uk-active"><a href="{% url 'article' %}">Your_Article</a></li>
                             <li class="uk-active"><a href="{% url 'logout' %}"><span uk-icon="sign-out"></span>Logout({{ user }})</a></li>
                         {% else %}
                             <li class="uk-active"><a href="{% url 'signup' %}"><span uk-icon="user"></span>Signin</a></li>
@@ -49,6 +50,6 @@
                     </ul>
                 </div>
             </nav>
-    </div>
+{#    </div>#}
 </body>
 </html>
