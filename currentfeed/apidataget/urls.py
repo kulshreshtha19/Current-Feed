@@ -2,6 +2,7 @@ from django.urls import path,include
 from . import views
 # from django.contrib.auth import login
 
+
 urlpatterns=[
     path('apidataget/',views.index,name='index'),
     path('apidataget/<str:type>/',views.category,name='category'),
@@ -10,6 +11,6 @@ urlpatterns=[
     path('logout/',views.logout,name='logout'),
     path('signup/',views.signup,name='signup'),
     path('login/',views.login,name='login'),
-    path('save/',views.save,name='save'),
+    path('save/<str:type>',views.save,name='save'),
     path('article/',views.article,name='article')
 ]

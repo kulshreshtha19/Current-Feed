@@ -1,6 +1,7 @@
 {% extends 'apidataget/home.html' %}
 
 {% block content %}
+    <div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" style="margin-top: 18px" uk-grid>
     {% for article in des %}
         {% if article.urlToImage is not None and article.title is not None and article.description is not None and article.url is not None%}
             <div>
@@ -12,7 +13,7 @@
                         <h3 class="uk-card-title">{{ article.title }}</h3>
                         <p> {{ article.description}}</p>
                         <div class="uk-card-footer uk-inline">
-                            <form class="uk-form" method="post" action="/save/">
+                            <form class="uk-form" method="post" action="/save/{{ type }}">
                                 {% csrf_token %}
                                 <input class="uk-button uk-button-default" type="submit" value="Save"/>
                                 <button class="uk-button" uk-icon="icon: social"></button>
@@ -35,4 +36,5 @@
             </div>
         {% endif %}
     {% endfor %}
+    </div>
 {% endblock %}

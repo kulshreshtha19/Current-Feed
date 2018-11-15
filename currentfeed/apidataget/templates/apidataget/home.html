@@ -9,15 +9,179 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/js/uikit-icons.min.js"></script>
     <script src="uikit/dist/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+{#<p>{{ top_headline.3.title }}</p>#}
 {% include "apidataget/Nav.html" %}
-
-<div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" style="margin-top: 18px" uk-grid>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
             {% block content %}
-            {% endblock %}
-</div>
+{#                <div uk-slider="finite: true">#}
+                <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="clsActivated: uk-transition-active; center: true">
+                <ul class="uk-slider-items uk-grid">
+                {% for article in top_headline %}
+                    {% if article.urlToImage is not None and article.title is not None and article.description is not None and article.url is not None%}
+                        <li class="uk-width-3-5">
+                            <div class="uk-panel">
+                                <img src="{{ article.urlToImage }}" alt="" style="height: 90%;width: 100%">
+                                <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
+                                    <p uk-slider-parallax="x: 200,-200" style="color: white;">{{ article.title }}</p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endif %}
+                 {% endfor %}
+                </ul>
 
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+                </div>
+{#                </div>#}
+{#                Business#}
+                <h1 class="uk-heading-bullet"><span>Business</span></h1>
+                <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
+                <ul class="uk-slider-items uk-grid">
+                    {% for article in business %}
+                    {% if article.urlToImage is not None and article.title is not None%}
+                    <li class="uk-width-1-4">
+                        <div class="uk-panel">
+                            <img src="{{ article.urlToImage }}" alt="" style="height: 90%;width: 100%">
+                            <div class="uk-position-bottom uk-text-center">
+{#                                <h2 uk-slider-parallax="x: 100,-100">Heading</h2>#}
+                                <p uk-slider-parallax="x: 200,-200" style="color: white;font-weight: bold">{{ article.title }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+            </div>
+
+{#               Sports #}
+                <h1 class="uk-heading-bullet"><span>Sports</span></h1>
+                <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
+                <ul class="uk-slider-items uk-grid">
+                    {% for article in sports %}
+                    {% if article.urlToImage is not None and article.title is not None%}
+                    <li class="uk-width-1-4">
+                        <div class="uk-panel">
+                            <img src="{{ article.urlToImage }}" alt="" style="height: 90%;width: 100%">
+                            <div class="uk-position-bottom uk-text-center">
+{#                                <h2 uk-slider-parallax="x: 100,-100">Heading</h2>#}
+                                <p uk-slider-parallax="x: 200,-200" style="color: white;font-weight: bold">{{ article.title }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+            </div>
+
+             <h1 class="uk-heading-bullet"><span>Entertainment</span></h1>
+                <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
+                <ul class="uk-slider-items uk-grid">
+                    {% for article in entertainment %}
+                    {% if article.urlToImage is not None and article.title is not None%}
+                    <li class="uk-width-1-4">
+                        <div class="uk-panel">
+                            <img src="{{ article.urlToImage }}" alt="" style="height: 90%;width: 100%">
+                            <div class="uk-position-bottom uk-text-center">
+{#                                <h2 uk-slider-parallax="x: 100,-100">Heading</h2>#}
+                                <p uk-slider-parallax="x: 200,-200" style="color: white;font-weight: bold">{{ article.title }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+            </div>
+
+             <h1 class="uk-heading-bullet"><span>Health</span></h1>
+                <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
+                <ul class="uk-slider-items uk-grid">
+                    {% for article in health %}
+                    {% if article.urlToImage is not None and article.title is not None%}
+                    <li class="uk-width-1-4">
+                        <div class="uk-panel">
+                            <img src="{{ article.urlToImage }}" alt="" style="height: 90%;width: 100%">
+                            <div class="uk-position-bottom uk-text-center">
+{#                                <h2 uk-slider-parallax="x: 100,-100">Heading</h2>#}
+                                <p uk-slider-parallax="x: 200,-200" style="color: white;font-weight: bold">{{ article.title }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+            </div>
+
+            <h1 class="uk-heading-bullet"><span>Science</span></h1>
+                <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
+                <ul class="uk-slider-items uk-grid">
+                    {% for article in science %}
+                    {% if article.urlToImage is not None and article.title is not None%}
+                    <li class="uk-width-1-4">
+                        <div class="uk-panel">
+                            <img src="{{ article.urlToImage }}" alt="" style="height: 90%;width: 100%">
+                            <div class="uk-position-bottom uk-text-center">
+{#                                <h2 uk-slider-parallax="x: 100,-100">Heading</h2>#}
+                                <p uk-slider-parallax="x: 200,-200" style="color: white;font-weight: bold">{{ article.title }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+            </div>
+
+            <h1 class="uk-heading-bullet"><span>Technology</span></h1>
+               <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
+                <ul class="uk-slider-items uk-grid">
+                    {% for article in technology %}
+                    {% if article.urlToImage is not None and article.title is not None%}
+                    <li class="uk-width-1-4">
+                        <div class="uk-panel">
+                            <img src="{{ article.urlToImage }}" alt="" style="height: 90%;width: 100%">
+                            <div class="uk-position-bottom uk-text-center">
+{#                                <h2 uk-slider-parallax="x: 100,-100">Heading</h2>#}
+                                <p uk-slider-parallax="x: 200,-200" style="color: white;font-weight: bold">{{ article.title }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+            </div>
+            {% endblock %}
+{% include "apidataget/footer.html" %}
 </body>
 </html>
