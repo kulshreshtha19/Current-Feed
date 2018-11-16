@@ -30,14 +30,13 @@ def category(request, type):
 def search(request):
     if request.method == 'GET':
         data = request.GET['var']
+        form = ArticleForm()
         newsapi = NewsApiClient(api_key='f7034c78f0b14f58908af1b25aa28c9a')
         all_articles = newsapi.get_everything(q=data, language='en')
-        return render(request, "apidataget/front.html", {'des': all_articles['articles']})
+        return render(request, "apidataget/front.html", {'des': all_articles['articles'],'form': form, 'type':data})
 
     else:
         return HttpResponse("Search not found")
-
-
 
 def login(request):
     if (request.method == 'POST'):
@@ -112,11 +111,15 @@ def save(request, type):
                                           article_time=datetime.datetime.now())
             article.save()
             messages.success(request, "Your article has been saved successfully")
-            return redirect('category', type=type)
+            if type == 'business' or type == 'sports' or type == 'entertainment' or type == 'health' or type == 'science' or type =='technology':
+                return redirect('category', type=type)
+            return redirect('/apidataget/$?var='+type)
 
         else:
             messages.warning(request, "You have already submitted the article")
-            return redirect('category', type=type)
+            if type == 'business' or type == 'sports' or type == 'entertainment' or type == 'health' or type == 'science' or type =='technology':
+                return redirect('category', type=type)
+            return redirect('/apidataget/$?var='+type)
 
 
 @login_required(login_url='/login/')
