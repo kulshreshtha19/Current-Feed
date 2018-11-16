@@ -67,10 +67,10 @@ def home(request):
     health = newsapi.get_top_headlines(country='in', language='en', category='health')
     science = newsapi.get_top_headlines(country='in', language='en', category='science')
     technology = newsapi.get_top_headlines(country='in', language='en', category='technology')
-    return render(request, "apidataget/home.html", {'top_headline':top_headline['articles'][:4],'business':business['articles'][:4]
-                                                    ,'sports':sports['articles'][:4],'entertainment':entertainment['articles'][:4]
-                                                    ,'health':health['articles'][:4],'science':science['articles'][:4],'technology':
-                                                        technology['articles'][:4]})
+    return render(request, "apidataget/home.html", {'top_headline':top_headline['articles'][:4],'business':business['articles']
+                                                    ,'sports':sports['articles'],'entertainment':entertainment['articles']
+                                                    ,'health':health['articles'],'science':science['articles'],'technology':
+                                                        technology['articles']})
 
 
 def logout(request):
